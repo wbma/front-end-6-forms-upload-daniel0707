@@ -1,0 +1,12 @@
+<form>
+  <div class="container">
+    <h1>Sign Up</h1>
+    <hr>
+    <label><b>Username</b></label><br>
+    <input [(ngModel)]="username"><br>
+    <label><b>Password</b></label><br>
+    <input [(ngModel)]="password" type="password"><br>
+    <button (click)="mediaService.register()">Login</button>
+    </div>
+  </div>
+</form>
