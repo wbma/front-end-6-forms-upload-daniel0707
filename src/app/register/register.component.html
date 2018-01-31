@@ -1,12 +1,9 @@
-<form>
-  <div class="container">
-    <h1>Sign Up</h1>
-    <hr>
-    <label><b>Username</b></label><br>
-    <input [(ngModel)]="username"><br>
-    <label><b>Password</b></label><br>
-    <input [(ngModel)]="password" type="password"><br>
-    <button (click)="mediaService.register()">Login</button>
-    </div>
-  </div>
+<form (submit)="register()">
+  <input [(ngModel)]="user.usermame" placeholder="username" name="username">
+  <br>
+  <input [(ngModel)]="user.password" placeholder="password" name="password">
+  <br>
+  <input [(ngModel)]="user.email" placeholder="email" name="email">
+  <br>
+  <input [(ngModel)]="user.fullname" placeholder="full name" name="fullname">
 </form>

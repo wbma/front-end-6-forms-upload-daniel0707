@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MediaServiceService} from '../media-service.service';
+import {User} from '../classes/user';
+import {HttpErrorResponse} from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -8,7 +10,16 @@ import {MediaServiceService} from '../media-service.service';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(public mediaService: MediaServiceService) { }
+  constructor(public mediaService: MediaServiceService, private user: User) { }
+
+  register() {
+    this.mediaService.register(this.user).subscribe(response => {
+      this.mediaService.username = this.user.username;
+      this.mediaService.password = this.user.password;
+      this.mediaService.login();
+    }, (error: HttpErrorResponse) => {console.log(error.error.message);
+    });
+  }
 
   ngOnInit() {
   }

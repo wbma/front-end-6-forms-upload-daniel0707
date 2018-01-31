@@ -11,6 +11,7 @@ import { RegisterComponent } from './register/register.component';
 import { LogoutComponent } from './logout/logout.component';
 import {FormsModule} from '@angular/forms';
 import {MediaServiceService} from './media-service.service';
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
@@ -20,12 +21,13 @@ import {MediaServiceService} from './media-service.service';
     TopBarComponent,
     LoginComponent,
     RegisterComponent,
-    LogoutComponent
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [MediaServiceService],
   bootstrap: [AppComponent]

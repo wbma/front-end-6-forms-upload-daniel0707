@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MediaServiceService} from '../media-service.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,9 +9,14 @@ import {MediaServiceService} from '../media-service.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public mediaService: MediaServiceService) { }
+  constructor(public mediaService: MediaServiceService, private router: Router) { }
 
   ngOnInit() {
+    if (localStorage.getItem('token') != null) {
+      this.mediaService.getUserData().subscribe(response => {
+        console.log('Welcome' + response['full_name']);
+        this.router.navigate(['login']);
+      });
+    }
   }
-
 }
