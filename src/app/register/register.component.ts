@@ -9,8 +9,13 @@ import {HttpErrorResponse} from '@angular/common/http';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
+  user: User = {
+    username: '',
+    password: '',
+    email: ''
+  };
 
-  constructor(public mediaService: MediaServiceService, private user: User) { }
+  constructor(public mediaService: MediaServiceService) { }
 
   register() {
     this.mediaService.register(this.user).subscribe(response => {

@@ -33,10 +33,18 @@ export class MediaServiceService {
   public register(user) {
   return this.http.post(this.apiUrl + '/users', user);
 }
+
+  public uploadFormData(formData) {
+    const settings = {
+      headers: new HttpHeaders().set('x-access-token', localStorage.getItem('token'))
+    };
+    return this.http.post(this.apiUrl + '/media', formData, settings);
+  }
   public getUserData() {
     const settings = {
       headers: new HttpHeaders().set('x-access-token', localStorage.getItem('token'))
     };
+    console.log('we try to upload now');
     return this.http.get(this.apiUrl + '/users/user', settings);
   }
 }

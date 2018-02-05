@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {MediaServiceService} from '../media-service.service';
+import {Router} from '@angular/router';
+import {HttpErrorResponse} from '@angular/common/http';
 
 @Component({
   selector: 'app-front',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FrontComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private mediaService: MediaServiceService, private router: Router) {
   }
 
+  ngOnInit() {
+    if (localStorage.getItem('token') !== null) {
+      this.mediaService.getUserData().subscribe(response => {
+        console.log('Welcome ' + response['full_name']);
+      }, (error: HttpErrorResponse) => {
+        console.log(error);
+        this.router.navigate(['login']);
+      });
+    } else {
+      this.router.navigate(['login']);
+    }
+  }
 }
